@@ -28,6 +28,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare build environment for jsonnet and sudachi.rs
+        run: |
+          DEBIAN_FRONTEND=noninteractive sudo -E apt-get update
+          DEBIAN_FRONTEND=noninteractive sudo -E apt-get install -y build-essential python3-all-dev cargo
+
       - name: Install Poetry
         run: |
           pipx install poetry
